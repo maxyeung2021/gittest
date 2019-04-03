@@ -1,0 +1,48 @@
+步骤1、---删除注册未绑卡的用户
+delete from cif.cif_visitor_apply t where t.mobiletel in (select MOBILETEL from cif.CIF_VISITOR);
+delete from cif.cif_apply t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_platform_cust t where t.platformcustomerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_cust t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_certificate t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_referee t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_person t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_investor t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from aus.aus_authone t where t.custid in (select customerno  from cif.CIF_VISITOR);
+delete from aus.aus_authmethod t where t.custid in (select customerno  from cif.CIF_VISITOR);
+delete from aus.aus_authstatus t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from aus.aus_password t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+
+
+步骤2、--删除已经绑卡的客户
+delete from cif.cif_apply t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_platform_cust t where t.platformcustomerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_cust t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_certificate t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_referee t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_person t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_investor t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from cif.cif_certificate t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+
+delete from rtb.acct_fund t;
+delete from rtb.ack_acct t;
+delete from rtb.ack_trans t ;
+delete from rtb.acct_cust t;
+delete from rtb.acct_trans t;
+delete from ua.acct_trans t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from ua.acct_capital t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from ua.acct_deposit t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+delete from ua.acct_capital_distributor t where t.customerno in (select customerno  from cif.CIF_VISITOR);
+
+
+
+步骤3、
+
+update cif.cif_visitor_apply t set status='00' where t.customerno in (select customerno  from cif.CIF_VISITOR);
+
+update cif.cif_visitor_apply t set status='00' 
+
+
+步骤4、delete from cif.cif_visitor ;
+
+步骤5、清理redis
+
